@@ -1,24 +1,24 @@
 {
-  "name": "airpods",
+  "name": "aura-x1",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "next lint"
   },
   "dependencies": {
     "next": "15.1.0",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
     "gsap": "^3.12.5",
-    "framer-motion": "^11.11.17",
-    "three": "^0.170.0",
-    "@react-three/fiber": "^8.17.10",
-    "@react-three/drei": "^9.117.3",
+    "framer-motion": "^12.0.0",
+    "three": "^0.175.0",
+    "@react-three/fiber": "^9.1.2",
+    "@react-three/drei": "^10.0.0",
     "lenis": "^1.1.18",
-    "lucide-react": "^0.460.0",
+    "lucide-react": "^0.513.0",
     "clsx": "^2.1.1",
     "tailwind-merge": "^2.5.4",
     "canvas-confetti": "^1.9.3"
@@ -28,7 +28,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "@types/three": "^0.169.0",
+    "@types/three": "^0.175.0",
     "@types/canvas-confetti": "^1.6.4",
     "eslint": "^9",
     "eslint-config-next": "15.1.0",
