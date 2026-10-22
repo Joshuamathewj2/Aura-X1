@@ -1,36 +1,51 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# AURA X1: Concept Product Launch Page
 
-## Getting Started
+An Apple-style launch page for **AURA X1**, a fictional pair of premium wireless earbuds, built to practise scroll-driven storytelling and real-time 3D on the web.
 
-First, run the development server:
+> Concept project: AURA X1 is not a real product.
+
+## What's on the page
+
+| Section | Technique |
+|---|---|
+| **Hero** | A 180-frame image sequence drawn to `<canvas>` and scrubbed by scroll with GSAP `ScrollTrigger`; frames are preloaded and drawn cover-fit |
+| **Sound showcase** | Framer Motion `useScroll` / `useTransform` parallax tied to scroll progress |
+| **360° viewer** | Earbud modelled from primitives in React Three Fiber (`sphereGeometry`, `capsuleGeometry`, `meshPhysicalMaterial`), drag-to-rotate via drei `PresentationControls` |
+| **Adaptive ANC demo** | Interactive toggle that visualises noise cancellation on and off |
+| **Smart features** | Animated feature grid (calls, fast charging, Find My, instant pairing, sweat proof, wind reduction) |
+| **Pricing** | Plan cards |
+| **Smooth scroll** | Lenis momentum scrolling wrapped around the whole page |
+
+## Tech stack
+
+Next.js (App Router) · React 19 · TypeScript · Tailwind CSS v4 · GSAP + ScrollTrigger · Framer Motion · React Three Fiber / drei · Lenis · lucide-react
+
+## Run locally
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run build && npm start   # production build
+npm run lint
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Project structure
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```
+src/
+  app/            layout, global styles, page composition
+  components/
+    Hero.tsx            scroll-scrubbed canvas frame sequence
+    SoundShowcase.tsx   scroll-linked parallax
+    ThreeDViewer.tsx    React Three Fiber earbud model
+    ANCShowcase.tsx     noise-cancellation demo
+    SmartFeatures.tsx   feature grid
+    PriceList.tsx       pricing cards
+    Navbar.tsx, SmoothScroll.tsx
+public/frames/    180 JPEG frames for the hero sequence
+```
