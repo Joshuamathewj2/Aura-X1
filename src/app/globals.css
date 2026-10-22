@@ -1,91 +1,122 @@
 @import "tailwindcss";
 
 @theme {
-  --color-brand-primary: #0071e3;
-  --color-brand-secondary: #86868b;
-  --color-brand-dark: #000000;
-  --color-brand-light: #f5f5f7;
-  
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
+  --color-silver-mist: #E9E9E6;
+  --color-graphite: #121314;
+  --color-off-white: #F6F5F1;
+  --color-signal-orange: #FF5A1F;
+  --color-deep-accent: #1B1F2A;
+
+  --font-display: var(--font-anton), "Anton", Impact, sans-serif;
+  --font-body: var(--font-dm-sans), "DM Sans", system-ui, sans-serif;
+  --font-script: var(--font-yellowtail), "Yellowtail", cursive;
 }
 
 :root {
-  --background: 0 0% 100%;
-  --foreground: 0 0% 3.9%;
-  --card: 0 0% 100%;
-  --card-foreground: 0 0% 3.9%;
-  --popover: 0 0% 100%;
-  --popover-foreground: 0 0% 3.9%;
-  --primary: 0 0% 9%;
-  --primary-foreground: 0 0% 98%;
-  --secondary: 0 0% 96.1%;
-  --secondary-foreground: 0 0% 9%;
-  --muted: 0 0% 96.1%;
-  --muted-foreground: 0 0% 45.1%;
-  --accent: 0 0% 96.1%;
-  --accent-foreground: 0 0% 9%;
-  --destructive: 0 84.2% 60.2%;
-  --destructive-foreground: 0 0% 98%;
-  --border: 0 0% 89.8%;
-  --input: 0 0% 89.8%;
-  --ring: 0 0% 3.9%;
-  --radius: 0.75rem;
+  --ease: cubic-bezier(0.2, 0.9, 0.1, 1);
+  --ease-io: cubic-bezier(0.7, 0, 0.2, 1);
 }
 
-.dark {
-  --background: 240 10% 3.9%;
-  --foreground: 0 0% 98%;
-  --card: 240 10% 3.9%;
-  --card-foreground: 0 0% 98%;
-  --popover: 240 10% 3.9%;
-  --popover-foreground: 0 0% 98%;
-  --primary: 0 0% 98%;
-  --primary-foreground: 240 5.9% 10%;
-  --secondary: 240 3.7% 15.9%;
-  --secondary-foreground: 0 0% 98%;
-  --muted: 240 3.7% 15.9%;
-  --muted-foreground: 240 5% 64.9%;
-  --accent: 240 3.7% 15.9%;
-  --accent-foreground: 0 0% 98%;
-  --destructive: 0 62.8% 30.6%;
-  --destructive-foreground: 0 0% 98%;
-  --border: 240 3.7% 15.9%;
-  --input: 240 3.7% 15.9%;
-  --ring: 240 4.9% 83.9%;
+/* Base typography */
+.font-display {
+  font-family: var(--font-anton), "Anton", Impact, sans-serif;
 }
 
-@layer base {
-  * {
-    border-color: var(--border);
+.font-body {
+  font-family: var(--font-dm-sans), "DM Sans", system-ui, sans-serif;
+}
+
+.font-script {
+  font-family: var(--font-yellowtail), "Yellowtail", cursive;
+}
+
+/* Red Velvet Signature Outlined Text */
+.outline-text-stroke {
+  -webkit-text-stroke: 2px currentColor;
+  color: transparent !important;
+}
+
+.outline-text-dark {
+  -webkit-text-stroke: 2px #121314;
+  color: transparent !important;
+}
+
+.outline-text-light {
+  -webkit-text-stroke: 2px #F6F5F1;
+  color: transparent !important;
+}
+
+.outline-text-orange {
+  -webkit-text-stroke: 2px #FF5A1F;
+  color: transparent !important;
+}
+
+.outline-text-stroke-light {
+  -webkit-text-stroke: 2px #F6F5F1;
+  color: transparent !important;
+}
+
+.outline-text-stroke-dark {
+  -webkit-text-stroke: 2px #121314;
+  color: transparent !important;
+}
+
+/* Subtle Film Grain Overlay */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  pointer-events: none;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .6 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+/* Red Velvet Line Reveal Masks */
+.ln {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  padding: 0.04em 0 0.02em;
+}
+
+.ln-in {
+  display: inline-block;
+  white-space: nowrap;
+  transform: translate3d(0, 0, 0);
+  transition: transform 1.2s var(--ease);
+}
+
+/* Drawing loader line animation */
+@keyframes loader-line {
+  0% {
+    transform: scaleX(0);
   }
-  body {
-    background-color: rgb(var(--background));
-    color: rgb(var(--foreground));
-    font-feature-settings: "rlig" 1, "calt" 1;
+  100% {
+    transform: scaleX(1);
   }
 }
 
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-  width: 10px;
+/* Floating particle animation */
+@keyframes float-particle {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+  50% {
+    transform: translate3d(8px, -18px, 0) rotate(15deg);
+  }
+  100% {
+    transform: translate3d(-6px, -32px, 0) rotate(-10deg);
+  }
 }
 
-::-webkit-scrollbar-track {
-  background: #000;
+.animate-float-particle {
+  animation: float-particle var(--dur, 8s) ease-in-out infinite alternate;
 }
 
-::-webkit-scrollbar-thumb {
-  background: #333;
-  border-radius: 5px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #444;
-}
-
-/* Lenis CSS */
-html.lenis {
+/* Lenis smooth scroll */
+html.lenis,
+html.lenis body {
   height: auto;
 }
 
@@ -101,21 +132,27 @@ html.lenis {
   overflow: hidden;
 }
 
-.lenis.lenis-scrolling iframe {
-  pointer-events: none;
+/* Accessibility: prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .ln-in {
+    transform: none !important;
+  }
 }
 
-/* Glassmorphism */
-.glass {
-  background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.glass-dark {
-  background: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+/* Hides the preloader even if hydration is delayed (see Preloader.tsx). */
+@keyframes preloader-failsafe {
+  to {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
 }
