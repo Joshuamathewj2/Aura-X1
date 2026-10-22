@@ -81,3 +81,17 @@ Visit [http://localhost:3000](http://localhost:3000).
 npm run build
 npm start
 ```
+
+## Image credits
+
+Lifestyle and product photos are from [Unsplash](https://unsplash.com) and used under the [Unsplash License](https://unsplash.com/license):
+
+| File | Source |
+| --- | --- |
+| `public/photos/walkway.webp` | https://unsplash.com/photos/photo-1770177359859-438458e807d7 |
+| `public/photos/city.webp` | https://unsplash.com/photos/photo-1772441936520-9db6ae519262 |
+| `public/photos/midnight-wood.webp` | https://unsplash.com/photos/photo-1578319439584-104c94d37305 |
+| `public/photos/midnight-red.webp` | https://unsplash.com/photos/photo-1606220588913-b3aacb4d2f46 |
+| `public/photos/midnight-case.webp` | https://unsplash.com/photos/photo-1667178173387-7e0cb51c0b4f |
+
+The transparent earbud and component cut-outs in `public/cutouts/` were extracted from the project's own product render frames with [rembg](https://github.com/danielgatis/rembg) (BiRefNet model).

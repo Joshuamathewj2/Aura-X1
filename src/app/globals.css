@@ -156,3 +156,33 @@ html.lenis body {
     pointer-events: none;
   }
 }
+
+/* Gentle bob for small floating UI chips */
+@keyframes badge-bob {
+  0%, 100% { transform: translateY(0) rotate(-1deg); }
+  50% { transform: translateY(-8px) rotate(1deg); }
+}
+
+/* Endless marquee strip */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* Hop + spin used by lineup cards and the CTA buds */
+@keyframes hop {
+  0%, 100% { transform: translateY(0) rotate(0deg) scale(1, 1); }
+  12% { transform: translateY(0) rotate(0deg) scale(1.08, 0.9); }
+  38% { transform: translateY(-34px) rotate(-12deg) scale(0.96, 1.06); }
+  62% { transform: translateY(-34px) rotate(8deg) scale(0.96, 1.06); }
+  86% { transform: translateY(0) rotate(0deg) scale(1.06, 0.93); }
+}
+
+@keyframes levitate {
+  0%, 100% { transform: translateY(0) rotate(-4deg); }
+  50% { transform: translateY(-18px) rotate(4deg); }
+}
+
+@keyframes spin-slow {
+  to { transform: rotate(360deg); }
+}

@@ -8,6 +8,8 @@ import ANCSection from '@/components/ANCSection';
 import FeaturesSection from '@/components/FeaturesSection';
 import CTASection from '@/components/CTASection';
 import Footer from '@/components/Footer';
+import FlightSection from '@/components/motion/FlightSection';
+import LifestyleSection from '@/components/motion/LifestyleSection';
 
 export default function Home() {
   return (
@@ -22,11 +24,17 @@ export default function Home() {
         {/* 1. Hero (Silver Mist #E9E9E6, nav dark) */}
         <Hero />
 
+        {/* 1b. Flight: scroll-driven earbud flying across the screen (Graphite, nav light) */}
+        <FlightSection />
+
         {/* 2. More than earbuds (Graphite #121314, nav light) */}
         <StorySection />
 
         {/* 3. TEARDOWN — Pinned Scroll Scene (Silver Mist #E9E9E6, nav dark) */}
         <TeardownSection />
+
+        {/* 3b. Lifestyle photos with parallax + marquee (Off-White, nav dark) */}
+        <LifestyleSection />
 
         {/* 4. Signature lineup (Off-White #F6F5F1, nav dark) */}
         <LineupSection />

@@ -3,6 +3,7 @@
 import React from 'react';
 import MagneticButton from '@/components/MagneticButton';
 import DriftingWords from '@/components/DriftingWords';
+import SplitReveal from '@/components/motion/SplitReveal';
 
 export default function CTASection() {
   return (
@@ -30,6 +31,22 @@ export default function CTASection() {
         }}
       />
 
+      {/* Two buds hopping in alternation, with components tumbling around them */}
+      <div aria-hidden="true" className="absolute inset-0 pointer-events-none hidden md:block">
+        <div className="absolute left-[1.5%] top-[40%] w-[min(13vw,200px)]">
+          <div className="absolute -bottom-6 left-[15%] w-[70%] h-6 rounded-[50%] bg-black/25 blur-md" />
+          <img src="/cutouts/bud-side.webp" alt="" className="w-full drop-shadow-[0_30px_30px_rgba(0,0,0,0.3)] animate-[hop_1.4s_cubic-bezier(0.3,0.7,0.4,1)_infinite]" />
+        </div>
+        <div className="absolute right-[1.5%] top-[48%] w-[min(12vw,180px)] -scale-x-100">
+          <div className="absolute -bottom-6 left-[15%] w-[70%] h-6 rounded-[50%] bg-black/25 blur-md" />
+          <img src="/cutouts/bud-three-quarter.webp" alt="" className="w-full drop-shadow-[0_30px_30px_rgba(0,0,0,0.3)] animate-[hop_1.4s_cubic-bezier(0.3,0.7,0.4,1)_infinite_0.7s]" />
+        </div>
+        <img src="/cutouts/part-coil.webp" alt="" className="absolute left-[18%] top-[16%] w-20 animate-[spin-slow_7s_linear_infinite]" />
+        <img src="/cutouts/part-driver.webp" alt="" className="absolute right-[16%] top-[14%] w-20 animate-[levitate_4s_ease-in-out_infinite]" />
+        <img src="/cutouts/part-battery.webp" alt="" className="absolute left-[7%] bottom-[6%] w-16 animate-[levitate_5s_ease-in-out_infinite_1s]" />
+        <img src="/cutouts/part-screw.webp" alt="" className="absolute right-[9%] bottom-[10%] w-8 animate-[spin-slow_3s_linear_infinite]" />
+      </div>
+
       <div className="max-w-5xl mx-auto relative z-10 flex flex-col items-center">
         {/* Script Lead-in */}
         <p className="font-script text-white text-3xl sm:text-4xl md:text-5xl mb-4 tracking-wide drop-shadow-sm">
@@ -41,11 +58,11 @@ export default function CTASection() {
           id="cta-heading"
           className="font-display text-[clamp(3.8rem,11.5vw,13rem)] leading-[0.88] uppercase tracking-tight text-white select-none drop-shadow-md"
         >
-          <span className="ln">
-            <span className="ln-in block">READY TO HEAR</span>
+          <span className="block">
+            <SplitReveal text="READY TO HEAR" />
           </span>
-          <span className="ln">
-            <span className="ln-in block">EVERYTHING?</span>
+          <span className="block">
+            <SplitReveal text="EVERYTHING?" delay={0.3} />
           </span>
         </h2>
 

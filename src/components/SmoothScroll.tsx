@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef } from 'react';
 import Lenis from 'lenis';
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 
 export default function SmoothScroll({ children }: { children: React.ReactNode }) {
   const lenisRef = useRef<Lenis | null>(null);
@@ -17,6 +18,8 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
     });
 
     lenisRef.current = lenis;
+    // keep GSAP ScrollTrigger (teardown pin) in lock-step with Lenis' smoothed scroll
+    lenis.on('scroll', ScrollTrigger.update);
 
     let rafId: number;
     function raf(time: number) {

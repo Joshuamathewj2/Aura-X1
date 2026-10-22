@@ -4,6 +4,8 @@ import React, { useEffect, useState } from 'react';
 import MagneticButton from '@/components/MagneticButton';
 import OutlineText from '@/components/OutlineText';
 import DriftingWords from '@/components/DriftingWords';
+import FloatingBud from '@/components/motion/FloatingBud';
+import SplitReveal from '@/components/motion/SplitReveal';
 
 const SPEC_CHIPS = [
   { label: 'Battery Life', value: '40 h Total' },
@@ -80,22 +82,14 @@ export default function Hero() {
             {/* Giant Condensed Headline */}
             <h1 className="font-display text-[clamp(4.2rem,12vw,11.5rem)] leading-[0.88] uppercase tracking-tight text-[#121314] select-none my-2">
               <span className="ln">
-                <span
-                  className="ln-in block"
-                  style={{
-                    transform: isReady ? 'translate3d(0, 0, 0)' : 'translate3d(0, 115%, 0)',
-                    transition: 'transform 1.1s cubic-bezier(0.2, 0.9, 0.1, 1)',
-                  }}
-                >
-                  PURE
-                </span>
+                <SplitReveal text="PURE" instant delay={1.3} stagger={0.07} />
               </span>
               <span className="ln">
                 <span
                   className="ln-in block"
                   style={{
                     transform: isReady ? 'translate3d(0, 0, 0)' : 'translate3d(0, 115%, 0)',
-                    transition: 'transform 1.1s cubic-bezier(0.2, 0.9, 0.1, 1) 0.12s',
+                    transition: 'transform 1.1s cubic-bezier(0.2, 0.9, 0.1, 1) 1.65s', // after the preloader lifts
                   }}
                 >
                   <OutlineText className="outline-text-dark hover:outline-text-orange transition-all">
@@ -124,31 +118,12 @@ export default function Hero() {
 
           {/* Right Column: Intact Earbud Render + Spec Chips */}
           <div className="lg:col-span-5 relative flex flex-col items-center justify-center">
-            {/* Ambient circular frame backdrop */}
-            <div
-              className="absolute w-[min(90vw,480px)] aspect-square rounded-full -z-10 pointer-events-none"
-              style={{
-                background:
-                  'radial-gradient(circle, rgba(255, 90, 31, 0.08) 0%, rgba(255, 255, 255, 0.6) 45%, transparent 70%)',
-              }}
-            />
-
-            {/* Earbud Frame 1 with Watermark Cropped */}
-            <div className="relative w-full max-w-[480px] aspect-[4/3] sm:aspect-square flex items-center justify-center">
-              <div className="relative w-full h-full overflow-hidden rounded-3xl">
-                {/* Scale 1.10 and origin top-left to completely hide the bottom-right 5% watermark */}
-                <img
-                  src="/frames/ezgif-frame-001.jpg"
-                  alt="AURA X1 Wireless Earbud in pristine intact form"
-                  width={1280}
-                  height={720}
-                  className="w-full h-full object-cover scale-[1.12] origin-top-left drop-shadow-[0_24px_38px_rgba(0,0,0,0.12)] transition-transform duration-700 hover:scale-[1.16]"
-                  fetchPriority="high"
-                />
-              </div>
+            <span className="sr-only">AURA X1 wireless earbud, floating with its components orbiting around it</span>
+            <div className="relative w-full max-w-[520px] flex items-center justify-center">
+              <FloatingBud />
 
               {/* Floating Badge */}
-              <div className="absolute -bottom-4 -left-2 sm:bottom-4 sm:left-0 bg-white/90 backdrop-blur-md border border-black/5 shadow-lg px-4 py-2.5 rounded-2xl flex items-center gap-3">
+              <div className="absolute bottom-2 left-0 bg-white/90 backdrop-blur-md border border-black/5 shadow-lg px-4 py-2.5 rounded-2xl flex items-center gap-3 animate-[badge-bob_4s_ease-in-out_infinite]">
                 <span className="w-2.5 h-2.5 rounded-full bg-[#FF5A1F] animate-pulse" />
                 <span className="text-xs font-bold uppercase tracking-wider text-[#121314]">
                   Gen 1 Acoustic Core

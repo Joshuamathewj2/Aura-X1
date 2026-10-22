@@ -3,6 +3,7 @@
 import React from 'react';
 import OutlineText from '@/components/OutlineText';
 import MagneticButton from '@/components/MagneticButton';
+import SplitReveal from '@/components/motion/SplitReveal';
 
 interface ProductVariant {
   name: string;
@@ -10,7 +11,8 @@ interface ProductVariant {
   price: string;
   unit: string;
   bgWord: string;
-  frameNumber: string;
+  image: string;
+  cutout: boolean;
   specs: string[];
   featured?: boolean;
 }
@@ -22,7 +24,8 @@ const PRODUCTS: ProductVariant[] = [
     price: '$349',
     unit: 'pair',
     bgWord: 'PRO',
-    frameNumber: '001',
+    image: '/cutouts/bud-three-quarter.webp',
+    cutout: true,
     specs: ['48dB Adaptive ANC', '10h + 40h Battery', 'Titanium Stem', 'Spatial Lossless'],
     featured: true,
   },
@@ -32,7 +35,8 @@ const PRODUCTS: ProductVariant[] = [
     price: '$249',
     unit: 'pair',
     bgWord: 'STUDIO',
-    frameNumber: '025',
+    image: '/cutouts/bud-side.webp',
+    cutout: true,
     specs: ['42dB Hybrid ANC', '8h + 32h Battery', '11mm Graphene Driver'],
   },
   {
@@ -41,7 +45,8 @@ const PRODUCTS: ProductVariant[] = [
     price: '$279',
     unit: 'pair',
     bgWord: 'SPORT',
-    frameNumber: '065',
+    image: '/photos/midnight-red.webp',
+    cutout: false,
     specs: ['IPX7 Waterproof', 'Secure Aero-Fin', 'Wind Shielding Tech'],
   },
   {
@@ -50,7 +55,8 @@ const PRODUCTS: ProductVariant[] = [
     price: '$89',
     unit: 'each',
     bgWord: 'POWER',
-    frameNumber: '110',
+    image: '/photos/midnight-case.webp',
+    cutout: false,
     specs: ['500 mAh Reserve', 'MagSafe & Qi', '15-min Quick Fuel'],
   },
 ];
@@ -75,7 +81,7 @@ export default function LineupSection() {
               className="font-display text-[clamp(3.5rem,10.5vw,11.5rem)] leading-[0.88] uppercase tracking-tight select-none"
             >
               <span className="ln">
-                <span className="ln-in block">OUR SIGNATURE</span>
+                <span className="block"><SplitReveal text="OUR SIGNATURE" /></span>
               </span>
               <span className="ln">
                 <span className="ln-in block">
@@ -115,16 +121,19 @@ export default function LineupSection() {
               </span>
             </div>
 
-            {/* Main Visual with Watermark Cropped */}
-            <div className="relative w-full aspect-[4/3] my-8 overflow-hidden rounded-2xl flex items-center justify-center">
-              <img
-                src="/frames/ezgif-frame-001.jpg"
-                alt="AURA X1 Pro"
-                width={1280}
-                height={720}
-                className="w-full h-full object-cover scale-[1.12] origin-top-left group-hover:scale-[1.18] transition-transform duration-700 ease-out"
-                loading="lazy"
-              />
+            {/* Main visual: the bud levitates, and hops + spins when the card is hovered */}
+            <div className="relative w-full aspect-[4/3] my-8 rounded-2xl flex items-center justify-center bg-[radial-gradient(circle_at_50%_60%,rgba(255,90,31,0.14),transparent_62%)]">
+              <div className="absolute bottom-[10%] w-[42%] h-[6%] rounded-[50%] bg-black/20 blur-md animate-[badge-bob_5s_ease-in-out_infinite]" aria-hidden="true" />
+              <div className="w-[62%] animate-[levitate_5s_ease-in-out_infinite]">
+                <img
+                  src={PRODUCTS[0].image}
+                  alt="AURA X1 Pro earbud"
+                  className="w-full drop-shadow-[0_35px_35px_rgba(0,0,0,0.25)] group-hover:animate-[hop_0.9s_cubic-bezier(0.3,0.7,0.4,1)_infinite]"
+                  loading="lazy"
+                />
+              </div>
+              <img src="/cutouts/part-coil.webp" alt="" aria-hidden="true" className="absolute top-[8%] right-[10%] w-16 animate-[spin-slow_9s_linear_infinite] group-hover:scale-125 transition-transform duration-500" />
+              <img src="/cutouts/part-battery.webp" alt="" aria-hidden="true" className="absolute bottom-[14%] left-[8%] w-14 animate-[levitate_4s_ease-in-out_infinite_0.6s]" />
             </div>
 
             {/* Body & Specs */}
@@ -180,16 +189,27 @@ export default function LineupSection() {
               </span>
 
               <div className="flex flex-col sm:flex-row gap-6 items-center">
-                {/* Crop Thumbnail */}
-                <div className="w-full sm:w-44 aspect-square rounded-2xl overflow-hidden bg-black/5 shrink-0">
-                  <img
-                    src={`/frames/ezgif-frame-${prod.frameNumber}.jpg`}
-                    alt={prod.name}
-                    width={1280}
-                    height={720}
-                    className="w-full h-full object-cover scale-[1.14] origin-top-left group-hover:scale-[1.20] transition-transform duration-500 ease-out"
-                    loading="lazy"
-                  />
+                {/* Thumbnail: cut-outs hop + spin on hover, photos zoom + tilt */}
+                <div
+                  className={`w-full sm:w-44 aspect-square rounded-2xl shrink-0 flex items-center justify-center ${
+                    prod.cutout ? 'bg-[radial-gradient(circle,rgba(255,90,31,0.12),transparent_65%)]' : 'overflow-hidden bg-black'
+                  }`}
+                >
+                  {prod.cutout ? (
+                    <img
+                      src={prod.image}
+                      alt={prod.name}
+                      className="w-[78%] drop-shadow-[0_20px_20px_rgba(0,0,0,0.22)] animate-[levitate_4.5s_ease-in-out_infinite] group-hover:animate-[hop_0.9s_cubic-bezier(0.3,0.7,0.4,1)_infinite]"
+                      loading="lazy"
+                    />
+                  ) : (
+                    <img
+                      src={prod.image}
+                      alt={prod.name}
+                      className="w-full h-full object-cover scale-110 group-hover:scale-[1.28] group-hover:rotate-3 transition-transform duration-700 ease-out"
+                      loading="lazy"
+                    />
+                  )}
                 </div>
 
                 {/* Details */}
